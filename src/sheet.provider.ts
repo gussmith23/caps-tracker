@@ -5,6 +5,7 @@ import { Player } from './player';
 import { Game } from './game';
 import { getConfig } from './config';
 import { Point } from './point';
+import { Item } from './item';
 
 export const sheetProvider = {
   provide: 'SHEET_PROVIDER',
@@ -36,7 +37,11 @@ class SheetService {
     await this.sheet.loadInfo();
 
     // Check schemas.
-    await Promise.all([Player.checkSchema(this.playerSheet()), Game.checkSchema(this.gameSheet()), Point.checkSchema(this.getPointSheet())]);
+    await Promise.all([Player.checkSchema(this.playerSheet()), Game.checkSchema(this.gameSheet()), Point.checkSchema(this.getPointSheet()), Item.checkSchema(this.getItemSheet())]);
+  }
+
+  private getItemSheet() {
+    return this.sheet.sheetsByTitle['items'];
   }
 
   private gameSheet() {
@@ -280,5 +285,10 @@ class SheetService {
 
       return pointTypeToSortedPlayersAndPoints;
     });
+  }
+
+  async getItemsMap(): Promise<Map<string, Item>> {
+    let sheet = this.getItemSheet();
+    return sheet.getRows().then(rows => new Map(rows.map(row => { let item = Item.fromRow(row); return [item.id, item]; })));
   }
 }

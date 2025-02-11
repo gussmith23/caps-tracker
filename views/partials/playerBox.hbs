@@ -3,9 +3,9 @@ inputs:
 - player: the player object
 - points: the number of points the player has
 - game: the game --}}
-<div class="player-box card fs-3">
+<div class="player-box card fs-3" style="height: 100%">
   <div class="card-body">
-    <p>{{{formatPlayer player}}}</p>
+    <p>{{{formatPlayer player itemsMap}}}</p>
     <p class="text-center fs-1">{{points}}</p>
 
     {{#unless game.endedAt}}

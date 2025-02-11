@@ -8,7 +8,7 @@ export class AppController {
   @Get()
   @Render('index')
   async getIndex() {
-    return Promise.all([this.sheet.getAllGamesMap(), this.sheet.getAllPlayersMap(), this.sheet.getPhrases()]).then(([gamesMap, playersMap, phrases]) => {
+    return Promise.all([this.sheet.getAllGamesMap(), this.sheet.getAllPlayersMap(), this.sheet.getPhrases(), this.sheet.getItemsMap()]).then(([gamesMap, playersMap, phrases, itemsMap]) => {
       let activeGameIds = [];
       let concludedGameIds = [];
       for (let game of gamesMap.values()) {
@@ -18,7 +18,7 @@ export class AppController {
           activeGameIds.push(game.id);
         }
       }
-      return { activeGameIds: activeGameIds, concludedGameIds: concludedGameIds, playersMap: playersMap, gamesMap: gamesMap, phrase: phrases[Math.floor(Math.random() * phrases.length)] };
+      return { activeGameIds: activeGameIds, concludedGameIds: concludedGameIds, playersMap: playersMap, gamesMap: gamesMap, phrase: phrases[Math.floor(Math.random() * phrases.length)], itemsMap };
     });
   }
 
@@ -61,7 +61,8 @@ export class AppController {
       let game = await this.sheet.getGame(params.id);
       let [player1, player2, player3, player4] = await this.sheet.getPlayers([game.player1id, game.player2id, game.player3id, game.player4id]);
       let [team1Score, team2Score, player1Score, player2Score, player3Score, player4Score] = await this.sheet.getScore(params.id);
-      return { game: game, player1: player1, player2: player2, player3: player3, player4: player4, team1Score, team2Score, player1Score, player2Score, player3Score, player4Score };
+      let itemsMap = await this.sheet.getItemsMap();
+      return { game: game, player1: player1, player2: player2, player3: player3, player4: player4, team1Score, team2Score, player1Score, player2Score, player3Score, player4Score, itemsMap };
     } catch (error) {
       return res.status(400).send(error.message);
     }

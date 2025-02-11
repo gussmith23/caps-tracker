@@ -6,6 +6,7 @@ inputs:
 - player3
 - player4
 - displayDate: boolean indicating whether to display the date
+- itemsMap
 --}}
 {{#if displayDate}}
 {{formatDate game.beganAt "MM/dd/yyyy"}}:
@@ -13,6 +14,6 @@ inputs:
 {{#if game.name}}
 {{game.name}}
 {{else}}
-{{{formatPlayer player2}}} &amp; {{{formatPlayer player4}}} vs. {{{formatPlayer player1}}} &amp; {{{formatPlayer
-player3}}}
+{{{formatPlayer player2 itemsMap}}} &amp; {{{formatPlayer player4 itemsMap}}} vs. {{{formatPlayer player1 itemsMap}}}
+&amp; {{{formatPlayer player3 itemsMap}}}
 {{/if}}

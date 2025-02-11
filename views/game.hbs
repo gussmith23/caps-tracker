@@ -1,3 +1,8 @@
+{{!--
+Inputs
+- game
+- itemsMap
+--}}
 <div class="modal" id="editNameModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -19,7 +24,7 @@
 
 <div class="container">
   <h1>
-    {{>gameName game=game}}
+    {{>gameName game=game itemsMap=itemsMap}}
     <button type="button" class="btn btn-light btn-sm ms-3" data-bs-toggle="modal"
       data-bs-target="#editNameModal">✎</button>
   </h1>

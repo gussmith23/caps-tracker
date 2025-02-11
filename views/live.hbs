@@ -17,7 +17,7 @@ inputs:
     {{#each (mapLookup pointTypeToSortedPlayersAndPoints 0)}}
     {{#with (mapLookup ../allPlayersMap (lookup this 0))}}
     <tr>
-      <td>{{{formatPlayer this}}}</td>
+      <td>{{{formatPlayer this itemsMap}}}</td>
       <td>{{../this.[1]}}</td>
     </tr>
     {{/with}}
@@ -30,7 +30,7 @@ inputs:
       {{#each (mapLookup pointTypeToSortedPlayersAndPoints 1)}}
       {{#with (mapLookup ../allPlayersMap (lookup this 0))}}
       <tr>
-        <td>{{{formatPlayer this}}}</td>
+        <td>{{{formatPlayer this itemsMap}}}</td>
         <td>{{../this.[1]}}</td>
       </tr>
       {{/with}}
@@ -43,7 +43,7 @@ inputs:
       {{#each (mapLookup pointTypeToSortedPlayersAndPoints 2)}}
     {{#with (mapLookup ../allPlayersMap (lookup this 0))}}
     <tr>
-      <td>{{{formatPlayer this}}}</td>
+      <td>{{{formatPlayer this itemsMap}}}</td>
       <td>{{../this.[1]}}</td>
     </tr>
     {{/with}}
@@ -56,7 +56,7 @@ inputs:
     {{#each (mapLookup pointTypeToSortedPlayersAndPoints 3)}}
     {{#with (mapLookup ../allPlayersMap (lookup this 0))}}
     <tr>
-      <td>{{{formatPlayer this}}}</td>
+      <td>{{{formatPlayer this itemsMap}}}</td>
       <td>{{../this.[1]}}</td>
     </tr>
     {{/with}}
